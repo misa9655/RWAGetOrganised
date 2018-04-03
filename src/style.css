@@ -1,4 +1,10 @@
-.dugme {
-    background-color: skyblue;
+body {
+    margin: 0;
 }
 
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #11ac70;
+    background-color: #272b30;
+}

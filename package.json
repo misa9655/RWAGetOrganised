@@ -1,12 +1,12 @@
 {
-  "name": "Movies",
+  "name": "Organise",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode development",
     "watch": "webpack --watch --mode development",
-    "start": "webpack-dev-server --open --mode development",
+    "start": "webpack-dev-server --open --mode development --hot --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
