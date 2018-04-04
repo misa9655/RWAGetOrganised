@@ -7,4 +7,14 @@ body {
     font-size: 14px;
     color: #11ac70;
     background-color: #272b30;
+    padding: 20px;
+}
+
+.task {
+    width: 100px;
+    height: 100px;
+    float: left;
+    border: 1px solid skyblue;
+    margin: 10px;
+
 }
