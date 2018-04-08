@@ -19,20 +19,19 @@ export class TaskServices {
                 //'Accept': 'application/json, text/plain, */*',
                 'Content-type': 'application/json; charset=UTF-8'
             },
-            body: JSON.stringify({id: task.id, name: task.name, desc: task.desc })
+            body: JSON.stringify({id: task.name, desc: task.desc })
         })
     }
-    static deleteTaskFromServer(task) {
-        fetch(`http://localhost:3000/tasks/${task.id}`, {
+    static deleteTaskFromServer(id) {
+        fetch(`http://localhost:3000/tasks/${id}`, {
             method: 'DELETE'
         })
     }
     static updateTaskOnServer(task) {
-        fetch(`http://localhost:3000/tasks/${task.id}`, {
+        fetch(`http://localhost:3000/tasks/${task.name}`, {
             method: 'PUT',
             body: JSON.stringify({
-                id: task.id,
-                name: task.name,
+                id: task.name,
                 desc: task.desc
               }),
               headers: {

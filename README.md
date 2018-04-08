@@ -6,4 +6,6 @@ watch: npm run watch
 
 dev-server: npm run start
 
-Jesnostavan planer svakodnevnih aktivnosti. 
+json-server: npm run json
+
+Jednostavan planer svakodnevnih aktivnosti. 

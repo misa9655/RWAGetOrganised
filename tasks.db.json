@@ -1,34 +1,20 @@
 {
   "tasks": [
     {
-      "id": "3",
-      "name": "Ucenje",
-      "desc": "Procitati 100 strana"
+      "desc": "Use case dijagrami",
+      "id": "OOP"
     },
     {
-      "id": "5",
-      "name": "Nesto",
-      "desc": "Nesto"
+      "desc": "Vezbamo matematiku",
+      "id": "Math"
     },
     {
-      "id": "6",
-      "name": "Nesto",
-      "desc": "Nesto"
+      "desc": "UCM i GRL dijagrami",
+      "id": "IS"
     },
     {
-      "id": "7",
-      "name": "Nesto",
-      "desc": "Nesto"
-    },
-    {
-      "id": "8",
-      "name": "Nesto",
-      "desc": "Nesto"
-    },
-    {
-      "id": "1111",
-      "name": "Proba",
-      "desc": "Ponovo proba"
+      "desc": "Rad na projektu",
+      "id": "SWE"
     }
   ]
 }
