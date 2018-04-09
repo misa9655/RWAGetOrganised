@@ -27,6 +27,7 @@ export class TaskServices {
             method: 'DELETE'
         })
     }
+    
     static updateTaskOnServer(task) {
         fetch(`http://localhost:3000/tasks/${task.name}`, {
             method: 'PUT',

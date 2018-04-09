@@ -14,6 +14,7 @@ const main = document.getElementById('main');
 // createAccountBox.classList.add('login-box');
 // main.appendChild(createAccountBox);
 
+
 // const logo = document.createElement('img');
 // logo.src = img;
 // logo.className = 'avatar';
