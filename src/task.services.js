@@ -8,8 +8,9 @@ export class TaskServices {
     //         Draw.drawTask(host, element);
     //     })
     // }
-    static getTasksFromServer() {
-        return fetch('http://localhost:3000/tasks')
+
+    static getTasksFromServer(userID) {
+        return fetch(`http://localhost:3000/tasks?userID=${userID}`)
             .then(res => res.json())
     }
     static addNewTaskToServer(task) {
