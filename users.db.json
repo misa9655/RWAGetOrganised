@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "tasks": [
+        {
+          "desc": "Use case dijagrami",
+          "id": "OOP"
+        },
+        {
+          "desc": "Vezbamo matematiku",
+          "id": "Math"
+        },
+        {
+          "desc": "UCM i GRL dijagrami",
+          "id": "IS"
+        },
+        {
+          "desc": "Rad na projektu",
+          "id": "SWE"
+        }
+      ],
+      "password": "sifra123",
+      "id": "Nick1"
+    },
+    {
+      "id": "Milos",
+      "password": "sifra96",
+      "tasks": []
+    }
+  ]
+}
