@@ -1,13 +1,21 @@
 import {Task} from './task';
 
 export class TaskServices {
-    // static draw() {
-    //     let host = document.getElementById('main');
-    //     host.innerHTML = '';
-    //     this.tasks.forEach((element)=>{
-    //         Draw.drawTask(host, element);
-    //     })
-    // }
+    
+    static draw(host, task) {
+        const box = document.createElement('div');
+        box.classList.add('task');
+        host.appendChild(box);
+        const h3 = document.createElement('h3');
+        h3.innerHTML = task.id;
+        box.appendChild(h3);
+        const p = document.createElement('p');
+        p.innerHTML = task.desc;
+        box.appendChild(p);
+        const obrisi = document.createElement('button');
+        obrisi.textContent = 'x';
+        box.appendChild(obrisi);
+    }
 
     static getTasksFromServer(userID) {
         return fetch(`http://localhost:3000/tasks?userID=${userID}`)
@@ -20,7 +28,7 @@ export class TaskServices {
                 //'Accept': 'application/json, text/plain, */*',
                 'Content-type': 'application/json; charset=UTF-8'
             },
-            body: JSON.stringify({id: task.name, desc: task.desc })
+            body: JSON.stringify({id: task.name, desc: task.desc, userID: task.userID })
         })
     }
     static deleteTaskFromServer(id) {

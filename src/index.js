@@ -1,14 +1,16 @@
-import './style.css';
-import {TaskServices} from './task.services';
-import {Task} from './task';
-import * as Rxjs from 'rxjs';
-import img from './avatar.png';
+import './style.css'
+import {TaskServices} from './task.services'
+import {Task} from './task'
+import {UserServices} from './user.services'
+import * as Rxjs from 'rxjs'
+import img from './avatar.png'
 
 
 
 const main = document.getElementById('main');
 
 //#region crtanje forme za kreiranje novog naloga
+
 const newAccount = (host) => {
     host.innerHTML = '';
     const createAccountBox = document.createElement('div');
@@ -51,7 +53,7 @@ const newAccount = (host) => {
 
     const link = document.createElement('a');
     link.href = '#';
-    link.onclick = () => nacrtajLogin(host);
+    link.onclick = () => login(host);
     link.textContent = 'Alredy have account?';
     createAccountBox.appendChild(link);
 
@@ -71,18 +73,20 @@ const newAccount = (host) => {
                                     'Content-type': 'application/json; charset=UTF-8'
                                 },
                                 body: JSON.stringify({ id: username.value, password: password.value})
-                            }).then(res => console.log(res));
+                            }).then(res => {
+                                console.log(res)
+                                UserServices.draw(host, {id: username.value});
+                            });
                         }
                     })
             }
         );
 }
 
-
 //endregion
 
 //#region crtanje login forme
-const nacrtajLogin = (host) => {
+const login = (host) => {
     host.innerHTML = '';
     const loginBox = document.createElement('div');
     loginBox.classList.add('login-box');
@@ -137,77 +141,119 @@ const nacrtajLogin = (host) => {
                         }
                         else {
                             console.log(data);
-                            nacrtajUsera(main, data[0]);
+                            UserServices.draw(main, data[0]);
                         }
                     })
             }
         );
 }
 
-nacrtajLogin(main);
+login(main);
 //endregion
 
 //#region crtanje usera
 
-const nacrtajUsera = (host, user) => {
-    host.innerHTML = '';
+// const nacrtajUsera = (host, user) => {
+//     host.innerHTML = '';
 
-    const dodajTask = document.createElement('button');
-    dodajTask.textContent = 'Add new';
-    host.appendChild(dodajTask);
+//     const dodajTask = document.createElement('button');
+//     dodajTask.textContent = 'Add new';
+//     host.appendChild(dodajTask);
 
-    const obrisiNalog = document.createElement('button');
-    obrisiNalog.textContent = 'Delete account';
-    host.appendChild(obrisiNalog);
+//     const obrisiNalog = document.createElement('button');
+//     obrisiNalog.textContent = 'Delete account';
+//     host.appendChild(obrisiNalog);
 
-    const naslov = document.createElement('h1');
-    naslov.textContent = user.id;
-    console.log(user.id);
-    host.appendChild(naslov);
-    TaskServices.getTasksFromServer(user.id)
-        .then((tasks) => {
-            tasks.forEach((task)=> {
-                const box = document.createElement('div');
-                box.classList.add('task');
-                host.appendChild(box);
-                const h3 = document.createElement('h3');
-                h3.innerHTML = task.id;
-                box.appendChild(h3);
-                const p = document.createElement('p');
-                p.innerHTML = task.desc;
-                box.appendChild(p);
-                const obrisi = document.createElement('button');
-                obrisi.textContent = 'x';
-                box.appendChild(obrisi);
-            });
-            const obObrisi = Rxjs.Observable.fromEvent(document, 'click')
-                .filter((e) => e.target.textContent == 'x')
-                .pluck('target', 'parentNode', 'firstChild', 'textContent')
-                .subscribe(
-                    (taskName) => {
-                        TaskServices.deleteTaskFromServer(taskName);
-                        setTimeout(()=>nacrtajUsera(host, user), 1000);
-                    }
-                )
-        });
-}
+//     const naslov = document.createElement('h1');
+//     naslov.textContent = user.id;
+//     console.log(user.id);
+//     host.appendChild(naslov);
+//     TaskServices.getTasksFromServer(user.id)
+//         .then((tasks) => {
+//             tasks.forEach((task)=> {
+//                 const box = document.createElement('div');
+//                 box.classList.add('task');
+//                 host.appendChild(box);
+//                 const h3 = document.createElement('h3');
+//                 h3.innerHTML = task.id;
+//                 box.appendChild(h3);
+//                 const p = document.createElement('p');
+//                 p.innerHTML = task.desc;
+//                 box.appendChild(p);
+//                 const obrisi = document.createElement('button');
+//                 obrisi.textContent = 'x';
+//                 box.appendChild(obrisi);
+//             });
+//             const obObrisi = Rxjs.Observable.fromEvent(document, 'click')
+//                 .filter((e) => e.target.textContent == 'x')
+//                 .pluck('target', 'parentNode', 'firstChild', 'textContent')
+//                 .subscribe(
+//                     (taskName) => {
+//                         TaskServices.deleteTaskFromServer(taskName);
+//                         setTimeout(()=>nacrtajUsera(host, user), 1000);
+//                     }
+//                 )
+//         });
+//         const obAddTask = Rxjs.Observable.fromEvent(dodajTask, 'click')
+//             .subscribe(
+//                 () => {
+//                     host.innerHTML = '';
+//                     const label1 = document.createElement('label');
+//                     label1.textContent = 'Task: ';
+//                     host.appendChild(label1);
+//                     const input1 = document.createElement('input');
+//                     input1.type = 'text';
+//                     label1.appendChild(input1);
+                    
+//                     const label2 = document.createElement('label');
+//                     label2.textContent = 'Description: ';
+//                     host.appendChild(label2);
+//                     const input2 = document.createElement('input');
+//                     input2.type = 'text';
+//                     label2.appendChild(input2);
+
+//                     const dodaj = document.createElement('button');
+//                     dodaj.textContent = 'dodaj';
+//                     host.appendChild(dodaj);
+
+//                     const obClickDodaj = Rxjs.Observable.fromEvent(dodaj, 'click')
+//                         .subscribe(
+//                             () => {
+//                                 fetch(`http://localhost:3000/tasks?id=${input1.value}`)
+//                                     .then(response => response.json())
+//                                     .then(data => {
+//                                         if (data.length == 0) {
+//                                             console.log(data);
+//                                             TaskServices.addNewTaskToServer(new Task(input1.value, input2.value, user.id))
+//                                             setTimeout(() => nacrtajUsera(host, user), 1000);
+                                            
+//                                         } else {
+//                                             window.alert('Task pod ovim imenom vec postoji!');
+//                                             input1.value = '';
+//                                         }
+//                                     })
+//                             }
+//                         );
+                        
+//                 }
+//             )
+//         const obDelete = Rxjs.Observable.fromEvent(obrisiNalog, 'click')
+//             .subscribe(
+//                 () => {
+//                     fetch(`http://localhost:3000/users/${user.id}`, {
+//                          method: 'DELETE'
+//                     })
+//                     fetch(`http://localhost:3000/tasks?userID=${user.id}`, {
+//                          method: 'DELETE'
+//                     })
+//                     nacrtajLogin(host);
+//                 }
+//             )
+
+// }
 
 //endregion
 
-
-
-//#region logika za brisanje taska iz baze
-
-// const obObrisi = Rxjs.Observable.fromEvent(document, 'click')
-//     .filter((e)=> e.target.textContent == 'X')
-//     .pluck('target', 'parentNode', 'firstChild', 'textContent')
-//     .subscribe(
-//         (taskName) => {
-//             TaskServices.deleteTaskFromServer(taskName);//implementiraj kasnije da se auto refresuje..
-//         }
-//     )
-
-//endregion
 
 //#region logika za dodavanje taskova u bazu
 

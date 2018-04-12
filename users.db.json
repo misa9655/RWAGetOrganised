@@ -5,29 +5,33 @@
       "password": "sifra96"
     },
     {
-      "id": "Nikola",
-      "password": "nik123"
-    },
-    {
       "id": "Teodora",
       "password": "tea333"
+    },
+    {
+      "id": "Petar",
+      "password": "123456"
+    },
+    {
+      "id": "Marko",
+      "password": "22145"
     }
   ],
   "tasks": [
     {
-      "desc": "UML dijagrami osnove",
-      "id": "UML",
+      "desc": "12h",
+      "id": "Sastanak",
       "userID": "Milos"
-    },
-    {
-      "desc": "UCM i GRL dijagrami",
-      "id": "IS",
-      "userID": "Nikola"
     },
     {
       "desc": "Rad na projektu",
       "id": "SWE",
       "userID": "Teodora"
+    },
+    {
+      "id": "Novis",
+      "desc": "Task",
+      "userID": "Marko"
     }
   ]
 }
